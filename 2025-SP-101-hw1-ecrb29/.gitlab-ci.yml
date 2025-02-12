@@ -1,0 +1,13 @@
+image: fedora:latest
+
+generaltester:
+  script:
+  - dnf install -y file graphviz python3-pip python3-devel gcc diffutils ncurses
+  - pip3 install python-Levenshtein mypy black py2cfg automata-lib
+  - bash grade.sh
+  timeout: 2 hours 30 minutes
+  artifacts:
+    when: always
+    paths:
+      - results.txt
+    expire_in: 2 months
